@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+build/
+dist/
+*.spec
+*-preview.png
+preview*.png
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
