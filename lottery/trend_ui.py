@@ -22,21 +22,21 @@ class Sparkline(QWidget):
         left, right, top, bottom = 38, w - 15, 15, h - 28
         lo, hi = min(self.values), max(self.values)
         span = max(hi - lo, 1)
-        p.setPen(QPen(QColor('#d9e2d7'), 1))
+        p.setPen(QPen(QColor('#ead5cd'), 1))
         for i in range(3):
             y = top + (bottom-top)*i/2
             p.drawLine(QPointF(left, y), QPointF(right, y))
-        p.setPen(QColor('#78867c'))
+        p.setPen(QColor('#78514c'))
         p.drawText(1, top + 7, str(hi))
         p.drawText(1, bottom + 4, str(lo))
-        p.setPen(QPen(QColor('#b84d3e'), 2))
+        p.setPen(QPen(QColor('#b52a34'), 2))
         points = [QPointF(left + i*(right-left)/max(len(self.values)-1, 1),
                           bottom - (value-lo)*(bottom-top)/span) for i, value in enumerate(self.values)]
         for a, b in zip(points, points[1:]):
             p.drawLine(a, b)
         if len(points) == 1:
             p.drawEllipse(points[0], 3, 3)
-        p.setPen(QColor('#78867c'))
+        p.setPen(QColor('#78514c'))
         p.drawText(left, h-5, '较早')
         p.drawText(right-28, h-5, '最近')
         p.end()
@@ -121,7 +121,7 @@ class TrendView(QWidget):
                         hit = n in row['red'] if red else n == row['blue']
                     omission = row['red_omission' if red else 'blue_omission'][n]
                     content = f'{n:02d}' if hit else ('?' if omission is None or (name == '重号走势' and row['repeat'] is None) else str(omission))
-                    cells.append((content, '#b84d3e' if red else '#386d91') if hit else (content, None))
+                    cells.append((content, '#aa2631' if red else '#285f82') if hit else (content, None))
                 values.append([(row['code'], None), (row['date'], None)] + cells)
         else:
             headers = ['期号', '日期', '红球', '蓝球', '指标']
@@ -138,7 +138,7 @@ class TrendView(QWidget):
                     if name == '和值遗漏':
                         indicator += f'（上次出现后的间隔：{self.previous_sum_omission(row)}）'
                 values.append([(row['code'], None), (row['date'], None),
-                    (' '.join(f'{n:02d}' for n in row['red']), None), (f'{row["blue"]:02d}', '#386d91'), (indicator, None)])
+                    (' '.join(f'{n:02d}' for n in row['red']), None), (f'{row["blue"]:02d}', '#285f82'), (indicator, None)])
         self.table.clear()
         self.table.setColumnCount(len(headers))
         self.table.setHorizontalHeaderLabels(headers)

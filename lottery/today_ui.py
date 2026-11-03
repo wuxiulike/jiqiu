@@ -119,7 +119,7 @@ class TodayPanel(QWidget):
         shadow = QGraphicsDropShadowEffect(self.start_button)
         shadow.setBlurRadius(20)
         shadow.setOffset(0, 5)
-        shadow.setColor(QColor(28, 77, 55, 95))
+        shadow.setColor(QColor(120, 24, 32, 85))
         self.start_button.setGraphicsEffect(shadow)
         row.addWidget(self.start_button)
         layout.addWidget(controls)

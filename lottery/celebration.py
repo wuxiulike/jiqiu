@@ -74,7 +74,7 @@ class Celebration(QWidget):
         p = QPainter(self)
         p.setRenderHint(QPainter.RenderHint.Antialiasing)
         w, h = self.width(), self.height()
-        p.fillRect(self.rect(), QColor(18, 31, 24, 210))
+        p.fillRect(self.rect(), QColor(56, 12, 19, 210))
         elapsed = time.monotonic() - self.started
         for x, start, speed, size, tilt, phase in self.particles:
             y = ((start + elapsed * speed) % 1.5 - 0.15) * h
